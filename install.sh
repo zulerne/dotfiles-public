@@ -29,5 +29,8 @@ if [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
 fi
 
 cd "$DOTFILES"
-stow --restow */
+for pkg in */; do
+    [[ "$pkg" == "manual/" ]] && continue
+    stow --restow "$pkg"
+done
 echo "Dotfiles linked successfully"

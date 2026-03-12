@@ -39,7 +39,7 @@ zsh/.zprofile                           → ~/.zprofile
 zsh/.zsh/catppuccin-apply.zsh           → ~/.zsh/catppuccin-apply.zsh
 starship/.config/starship.toml          → ~/.config/starship.toml
 ghostty/.config/ghostty/config          → ~/.config/ghostty/config
-micro/.config/micro/settings.json       → ~/.config/micro/settings.json
+micro/.config/micro/settings.base.json  → ~/.config/micro/settings.base.json
 bat/.config/bat/themes/                 → ~/.config/bat/themes/
 lazygit/.config/lazygit/                → ~/.config/lazygit/
 yazi/.config/yazi/                      → ~/.config/yazi/

@@ -1,10 +1,12 @@
+PACKAGES := $(filter-out manual/,$(wildcard */))
+
 .PHONY: stow delete restow
 
 stow:
-	stow */
+	stow $(PACKAGES)
 
 restow:
-	stow --restow */
+	stow --restow $(PACKAGES)
 
 delete:
-	stow --delete */
+	stow --delete $(PACKAGES)

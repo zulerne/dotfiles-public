@@ -1,4 +1,3 @@
-tap "homebrew/services"
 tap "redis/redis"
 brew "libssh2"
 brew "bat"

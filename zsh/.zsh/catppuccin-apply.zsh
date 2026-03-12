@@ -8,9 +8,20 @@ else
     _CATPPUCCIN="latte"
 fi
 
-# --- Config files (sed/cp) ---
-sed -i '' "s/^palette = .*/palette = \"catppuccin_$_CATPPUCCIN\"/" "$HOME/.dotfiles/starship/.config/starship.toml"
-sed -i '' "s/\"colorscheme\": \"catppuccin-.*\"/\"colorscheme\": \"catppuccin-$_CATPPUCCIN\"/" "$HOME/.dotfiles/micro/.config/micro/settings.json"
+# --- Runtime config generation (avoids modifying git-tracked files) ---
+_CACHE="$HOME/.cache/catppuccin"
+mkdir -p "$_CACHE"
+
+# Starship: generate config with correct palette
+sed "s/^palette = .*/palette = \"catppuccin_$_CATPPUCCIN\"/" \
+    "$HOME/.config/starship.toml" > "$_CACHE/starship.toml"
+export STARSHIP_CONFIG="$_CACHE/starship.toml"
+
+# Micro: generate settings from base template
+sed "s/\"colorscheme\": \"catppuccin-[a-z]*\"/\"colorscheme\": \"catppuccin-$_CATPPUCCIN\"/" \
+    "$HOME/.config/micro/settings.base.json" > "$HOME/.config/micro/settings.json"
+
+# Yazi: copy active theme
 cp "$HOME/.config/yazi/catppuccin-$_CATPPUCCIN.toml" "$HOME/.config/yazi/theme.toml"
 
 # --- Environment variables ---
