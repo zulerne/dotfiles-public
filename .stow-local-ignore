@@ -9,4 +9,4 @@
 ^/\.pre-commit-config\.yaml
 ^/\.git
 ^/\.gitignore
-^/screenshot\.png
+^/screenshot.*\.png

@@ -23,7 +23,7 @@ My dotfiles with Catppuccin theme.
 ```bash
 git clone https://github.com/zulerne/dotfiles-public.git ~/.dotfiles
 cd ~/.dotfiles
-./install.sh
+./install.sh  # installs Oh-My-Zsh, zsh plugins, and stows all configs
 ```
 
 To stow selectively: `stow zsh starship ghostty`
