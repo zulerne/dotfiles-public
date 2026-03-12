@@ -1,7 +1,6 @@
 # dotfiles
 
 [![Catppuccin](https://img.shields.io/badge/theme-Catppuccin_Mocha-cba6f7)](https://catppuccin.com)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 My dotfiles with Catppuccin theme.
 
@@ -78,7 +77,3 @@ Configs are tailored for macOS (Apple Silicon). On Linux you'll need to adjust:
 - `zsh/.zshrc` — remove `macos` from Oh-My-Zsh plugins
 - `zsh/.zsh/catppuccin-apply.zsh` — replace `defaults read` with your DE's dark mode detection
 - `ghostty/config` — remove `macos-option-as-alt`
-
-## License
-
-[MIT](LICENSE)
