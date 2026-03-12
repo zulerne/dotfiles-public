@@ -33,6 +33,9 @@ Brewfile.lock.json
 .zsh_sessions/
 .cache/
 
+# === LOCAL SCRIPTS ===
+sync-check.sh
+
 # === OS ARTIFACTS ===
 .DS_Store
 ._*
