@@ -1,0 +1,12 @@
+\.DS_Store
+^/README.*
+^/LICENSE.*
+^/Makefile
+^/install\.sh
+^/Brewfile
+^/\.stowrc
+^/\.stow-local-ignore
+^/\.pre-commit-config\.yaml
+^/\.git
+^/\.gitignore
+^/screenshot\.png

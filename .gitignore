@@ -1,0 +1,44 @@
+# === SECRETS & CREDENTIALS ===
+*.local
+*.secret
+*.secrets
+.secrets
+.env
+.env.*
+.envrc
+.netrc
+.npmrc
+.ssh/
+.gnupg/
+.git-credentials
+.gitconfig.local
+*.pem
+*.key
+
+# === SHELL HISTORY ===
+.zsh_history
+.bash_history
+.node_repl_history
+.python_history
+.lesshst
+.wget-hsts
+
+# === RUNTIME STATE ===
+.local/share/zoxide/
+.config/micro/buffers/
+.config/micro/backups/
+.config/lazygit/state.yml
+Brewfile.lock.json
+.zcompdump*
+.zsh_sessions/
+.cache/
+
+# === OS ARTIFACTS ===
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+*.swp
+*.swo
+*~
