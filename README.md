@@ -1,10 +1,9 @@
 # dotfiles
 
-[![macOS](https://img.shields.io/badge/macOS-000000?logo=apple&logoColor=white)](https://www.apple.com/macos/)
 [![Catppuccin](https://img.shields.io/badge/theme-Catppuccin_Mocha-cba6f7)](https://catppuccin.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-My macOS dotfiles with Catppuccin theme.
+My dotfiles with Catppuccin theme.
 
 ![dark](screenshot-dark.png)
 ![light](screenshot-light.png)
@@ -15,7 +14,7 @@ My macOS dotfiles with Catppuccin theme.
 - **Terminal**: Ghostty
 - **Editor**: micro
 - **CLI**: bat, eza, fzf, ripgrep, fd, zoxide, yazi, lazygit, lazydocker
-- **Theme**: Catppuccin (auto light/dark switching with macOS appearance)
+- **Theme**: Catppuccin (auto light/dark switching)
 - **Font**: JetBrains Mono Nerd Font
 - **Packages**: Brewfile for Homebrew
 
@@ -70,6 +69,15 @@ Standard commands are replaced with modern alternatives:
 | `cd`    | zoxide      |
 | `find`  | fd          |
 | `http`  | xh          |
+
+## Notes
+
+Configs are tailored for macOS (Apple Silicon). On Linux you'll need to adjust:
+
+- `zsh/.zprofile` — Homebrew path (`/opt/homebrew/...` → `/home/linuxbrew/...`)
+- `zsh/.zshrc` — remove `macos` from Oh-My-Zsh plugins
+- `zsh/.zsh/catppuccin-apply.zsh` — replace `defaults read` with your DE's dark mode detection
+- `ghostty/config` — remove `macos-option-as-alt`
 
 ## License
 

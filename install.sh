@@ -5,7 +5,9 @@ DOTFILES="$HOME/.dotfiles"
 
 # Check for stow
 if ! command -v stow &> /dev/null; then
-    echo "GNU Stow not found. Install it: brew install stow"
+    # macOS: brew install stow
+    # Linux: sudo apt install stow / sudo pacman -S stow
+    echo "GNU Stow not found. Install it first."
     exit 1
 fi
 
