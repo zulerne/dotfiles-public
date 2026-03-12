@@ -1,6 +1,6 @@
 # dotfiles
 
-My macOS dotfiles with Catppuccin theme, managed with [GNU Stow](https://www.gnu.org/software/stow/).
+My macOS dotfiles with Catppuccin theme.
 
 ![dark](screenshot-dark.png)
 ![light](screenshot-light.png)
@@ -18,7 +18,7 @@ My macOS dotfiles with Catppuccin theme, managed with [GNU Stow](https://www.gnu
 ## Quick start
 
 ```bash
-git clone https://github.com/zulerne/dotfiles.git ~/.dotfiles
+git clone https://github.com/zulerne/dotfiles-public.git ~/.dotfiles
 cd ~/.dotfiles
 ./install.sh
 ```
