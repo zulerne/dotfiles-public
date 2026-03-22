@@ -1,5 +1,16 @@
 {
   "permissions": {
-    "allow": []
-  }
+    "allow": [
+      "Read(path:~/Projects/**)",
+      "Bash(ls:*)",
+      "Bash(tree:*)"
+    ]
+  },
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true,
+    "obsidian@claude-code-obsidian": true,
+    "commit-commands@claude-plugins-official": true
+  },
+  "autoMemoryEnabled": true,
+  "effortLevel": "high"
 }

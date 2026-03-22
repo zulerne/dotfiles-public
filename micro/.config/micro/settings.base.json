@@ -1,9 +1,0 @@
-{
-    "colorscheme": "catppuccin-mocha",
-    "mkparents": true,
-    "softwrap": true,
-    "tabsize": 4,
-    "autosu": true,
-    "clipboard": "terminal",
-    "scrollbar": false
-}

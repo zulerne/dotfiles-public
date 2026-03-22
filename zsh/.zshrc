@@ -35,8 +35,8 @@ source $ZSH/oh-my-zsh.sh
 # ==============================================
 
 # Editor
-export EDITOR='micro'
-export VISUAL='micro'
+export EDITOR='nvim'
+export VISUAL='nvim'
 
 # --- KEYBINDINGS ---
 bindkey '^ ' autosuggest-accept
@@ -52,6 +52,7 @@ alias grep="rg"
 alias cd="z"
 alias find="fd"
 alias http="xh"
+alias code="zed"
 alias fm="yazi"
 alias lg="lazygit"
 alias ldo="lazydocker"
@@ -67,8 +68,8 @@ alias -s {json,yml,yaml,toml,md,txt,log}=bat
 alias -s go=code
 
 # Editor replacements
-alias nano="micro"
-alias edit="micro"
+alias nano="nvim"
+alias vim="nvim"
 
 # Eza completion fix
 compdef eza=ls
@@ -137,8 +138,28 @@ setopt HIST_SAVE_NO_DUPS
 setopt HIST_REDUCE_BLANKS
 
 # ==============================================
+# OPTIONAL TOOLS (uncomment to enable)
+# ==============================================
+
+# Google Cloud SDK
+# if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
+# if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+
+# NVM
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+# [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+
+# Bun
+# [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+# export BUN_INSTALL="$HOME/.bun"
+# export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Rust / Cargo
+. "$HOME/.cargo/env"
+
+# ==============================================
 # LOCAL OVERRIDES (not tracked by git)
 # ==============================================
 
-# Machine-specific secrets, tokens, extra PATH entries
-[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local

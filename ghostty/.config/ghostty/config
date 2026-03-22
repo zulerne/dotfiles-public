@@ -6,7 +6,7 @@ font-size = 18
 theme = dark:Catppuccin Mocha,light:Catppuccin Latte
 
 # Cursor
-cursor-style = bar
+# cursor-style = bar
 
 # Window
 window-padding-x = 8

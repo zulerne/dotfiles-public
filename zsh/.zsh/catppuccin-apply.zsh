@@ -17,10 +17,6 @@ sed "s/^palette = .*/palette = \"catppuccin_$_CATPPUCCIN\"/" \
     "$HOME/.config/starship.toml" > "$_CACHE/starship.toml"
 export STARSHIP_CONFIG="$_CACHE/starship.toml"
 
-# Micro: generate settings from base template
-sed "s/\"colorscheme\": \"catppuccin-[a-z]*\"/\"colorscheme\": \"catppuccin-$_CATPPUCCIN\"/" \
-    "$HOME/.config/micro/settings.base.json" > "$HOME/.config/micro/settings.json"
-
 # Yazi: copy active theme
 cp "$HOME/.config/yazi/catppuccin-$_CATPPUCCIN.toml" "$HOME/.config/yazi/theme.toml"
 
@@ -28,7 +24,6 @@ cp "$HOME/.config/yazi/catppuccin-$_CATPPUCCIN.toml" "$HOME/.config/yazi/theme.t
 export BAT_THEME="auto:system"
 export BAT_THEME_DARK="Catppuccin Mocha"
 export BAT_THEME_LIGHT="Catppuccin Latte"
-export MICRO_TRUECOLOR=1
 export LG_CONFIG_FILE="$HOME/Library/Application Support/lazygit/config.yml,$HOME/.config/lazygit/catppuccin-$_CATPPUCCIN.yml"
 
 # --- FZF colors ---
