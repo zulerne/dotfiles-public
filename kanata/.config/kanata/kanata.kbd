@@ -1,0 +1,62 @@
+;; kanata.kbd
+;; Migrated from Karabiner-Elements + Home Row Mods
+
+(defcfg
+  process-unmapped-keys yes
+  macos-dev-names-include (
+    "Magic Keyboard"
+    ;; uncomment to apply config to the built-in keyboard as well:
+    ;; "Apple Internal Keyboard / Trackpad"
+  )
+)
+
+(defsrc
+  caps  fn
+  f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
+  a     s     d     f     j     k     l     ;
+)
+
+(defvar
+  ;; tap-time:  max tap duration (ms). random mods firing → decrease; letters not registering → increase
+  ;; hold-time: delay before modifier activates. conflicts when typing fast → increase (250-300)
+  ;; current values are optimal for ~60-80 wpm
+  tap-time  150
+  hold-time 200
+)
+
+(defalias
+;; caps: tap = escape, hold = language switch
+  caps (tap-hold 200 300 esc C-spc)
+  ;; fn: hold = fn layer (real F1-F12)
+  fnl (layer-toggle fkeys)
+  ;; home row mods: tap = letter, hold = modifier
+  a   (tap-hold $tap-time $hold-time a lsft)
+  s   (tap-hold $tap-time $hold-time s lctl)
+  d   (tap-hold $tap-time $hold-time d lalt)
+  f   (tap-hold $tap-time $hold-time f lmet)
+  j   (tap-hold $tap-time $hold-time j rmet)
+  k   (tap-hold $tap-time $hold-time k ralt)
+  l   (tap-hold $tap-time $hold-time l rctl)
+  sem (tap-hold $tap-time $hold-time ; rsft)
+)
+
+(deflayer base
+  @caps    ;; caps: tap=escape, hold=language switch
+  @fnl     ;; fn: hold=fn layer
+  brdn  brup  mctl  M-spc  dtn  dnd  prev  pp  next  mute  vold  volu
+  @a  @s  @d  @f  @j  @k  @l  @sem
+)
+
+(deflayer fkeys
+  _  _
+  f1  f2  f3  f4  f5  f6  f7  f8  f9  f10  f11  f12
+  _   _   _   _   _   _   _   _
+)
+
+;; left_option + hjkl → arrow keys (other modifiers like shift pass through)
+(defoverrides
+  (lalt h) (left)
+  (lalt j) (down)
+  (lalt k) (up)
+  (lalt l) (right)
+)

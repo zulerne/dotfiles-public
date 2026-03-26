@@ -38,10 +38,6 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR='nvim'
 export VISUAL='nvim'
 
-# --- KEYBINDINGS ---
-bindkey '^ ' autosuggest-accept
-bindkey ' ' magic-space
-
 # --- ALIASES ---
 
 # Modern replacements

@@ -6,47 +6,49 @@
 // To see the default key bindings run `zed: open default keymap`
 // from the command palette.
 [
-  {
-    "context": "Workspace",
-    "bindings": {
-      // "shift shift": "file_finder::Toggle"
-    },
-  },
-  {
-    "context": "vim_mode == insert",
-    "bindings": {
-      "j j": "vim::NormalBefore",
-      "j k": "vim::NormalBefore",
-    },
-  },
+  // {
+  //   "context": "vim_mode == insert",
+  //   "bindings": {
+  //     "j j": "vim::NormalBefore",
+  //     "j k": "vim::NormalBefore",
+  //   },
+  // },
   {
     "context": "vim_mode == normal",
     "bindings": {
       "shift-u": "vim::Redo",
+      "space e": "project_panel::ToggleFocus",
+      "space t": "terminal_panel::Toggle",
+      "space f": "file_finder::Toggle",
+      "space b": "tab_switcher::Toggle",
+      "space w": "workspace::Save",
+      "space q": "pane::CloseActiveItem",
     },
   },
   {
-    "context": "vim_mode == normal || vim_mode == visual",
+    "context": "(VimControl && !menu)",
     "bindings": {
-      "H": "vim::FirstNonWhitespace",
-      "L": "vim::EndOfLine",
-      "ctrl-j": [
-        "action::Sequence",
-        ["vim::ScrollDown", "editor::ScrollCursorCenter"],
-      ],
-      "ctrl-k": [
-        "action::Sequence",
-        ["vim::ScrollUp", "editor::ScrollCursorCenter"],
-      ],
+      "space": null, // Disable the default action vim::WrappingRight
     },
   },
   {
-    "context": "Editor",
+    "context": "ProjectPanel",
     "bindings": {
-      // "ctrl-w": "editor::SelectLargerSyntaxNode",
-      // "alt-up": "editor::MoveToStartOfParagraph",
-      // "alt-down": "editor::MoveToEndOfParagraph",
-      // "cmd-shift-w": "editor::SelectSmallerSyntaxNode",
+      "space e": "workspace::CloseActiveDock",
+      "escape": "project_panel::ToggleFocus",
+    },
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      // "escape": "terminal_panel::Toggle",
+      "alt-space": "terminal_panel::Toggle",
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "shift shift": null,
     },
   },
 ]

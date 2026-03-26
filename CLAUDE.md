@@ -25,6 +25,7 @@ stow zsh       # Apply single package
 - **bat/** — `.config/bat/themes/`: Catppuccin bat themes
 - **lazygit/** — `.config/lazygit/`: Catppuccin lazygit themes
 - **yazi/** — `.config/yazi/`: file manager config and Catppuccin themes
+- **kanata/** — `.config/kanata/kanata.kbd`: keyboard remapping (home row mods, caps→esc/lang, fn layer, hjkl arrows)
 - **git/** — `.gitconfig`, `.gitignore_global`
 - **Brewfile** — all brew/cask/vscode/go dependencies (not a stow package)
 
