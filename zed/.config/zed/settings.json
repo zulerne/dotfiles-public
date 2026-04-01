@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "soft_wrap": "editor_width",
   "which_key": {
     "delay_ms": 1000,
     "enabled": true
@@ -16,7 +17,7 @@
   "use_auto_surround": true,
   "vim": {
     "use_system_clipboard": "always",
-    "use_smartcase_find": false,
+    "use_smartcase_find": true,
     "toggle_relative_line_numbers": true,
   },
   "vim_mode": true,
