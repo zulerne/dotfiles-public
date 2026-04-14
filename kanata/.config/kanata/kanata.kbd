@@ -3,73 +3,84 @@
 
 (defcfg
   process-unmapped-keys yes
-  macos-dev-names-include (
-    "Magic Keyboard"
+ ;; macos-dev-names-include (
+   ;; "Magic Keyboard"
     ;; uncomment to apply config to the built-in keyboard as well:
-    ;; "Apple Internal Keyboard / Trackpad"
-  )
+   ;; "Apple Internal Keyboard / Trackpad"
+  ;;)
 )
 
 (defsrc
   caps  fn
+  grv   =
   f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
   a     s     d     f     j     k     l     ;
   ;; lmet/rmet → backspace/enter
   lmet  rmet
   ;; TRAINING: remove this line and the corresponding one in deflayer base to restore standard backspace/enter
   bspc  ret
+  ;; TRAINING: physical modifiers disabled — use HRM
+  lsft  rsft  lctl  rctl  lalt  ralt
 )
 
 (defvar
   ;; tap-time:  max tap duration (ms). random mods firing → decrease; letters not registering → increase
   ;; hold-time: delay before modifier activates. conflicts when typing fast → increase (250-300)
-  ;; current values are optimal for ~60-80 wpm
-  tap-time  200
-  hold-time 200
+  tap-time       200
+  hold-index     190  ;; f j  (index)
+  hold-middle    200  ;; d k  (middle)
+  hold-ring      220  ;; s l  (ring)
+  hold-pinky     250  ;; a ;  (pinky)
 )
 
 ;; f+j simultaneous = language switch
 (defchords lang-sw 50
-  (f  ) (tap-hold $tap-time $hold-time f lsft)
-  (  j) (tap-hold $tap-time $hold-time j rsft)
+  (f  ) (tap-hold-release $tap-time $hold-index f lsft)
+  (  j) (tap-hold-release $tap-time $hold-index j rsft)
   (f j) C-A-spc
 )
 
 (defalias
   ;; caps: tap = escape, hold = hyper (Cmd+Ctrl+Opt+Shift)
-  caps (tap-hold 200 300 esc (multi lsft lctl lalt lmet))
+  caps (tap-hold-release $tap-time $hold-pinky esc (multi lsft lctl lalt lmet))
   ;; fn: hold = fn layer (real F1-F12)
   fnl (layer-toggle fkeys)
   ;; home row mods: tap = letter, hold = modifier
-  a   (tap-hold $tap-time $hold-time a lctl)
-  s   (tap-hold $tap-time $hold-time s lalt)
-  d   (tap-hold $tap-time $hold-time d lmet)
+  a   (tap-hold-release $tap-time $hold-pinky a lctl)
+  s   (tap-hold-release $tap-time $hold-ring  s lalt)
+  d   (tap-hold-release $tap-time $hold-middle d lmet)
   f   (chord lang-sw f)
   j   (chord lang-sw j)
-  k   (tap-hold $tap-time $hold-time k rmet)
-  l   (tap-hold $tap-time $hold-time l ralt)
-  sem (tap-hold $tap-time $hold-time ; rctl)
+  k   (tap-hold-release $tap-time $hold-middle k rmet)
+  l   (tap-hold-release $tap-time $hold-ring   l ralt)
+  sem (tap-hold-release $tap-time $hold-pinky  ; rctl)
 )
 
 (deflayer base
   @caps    ;; caps: tap=escape, hold=hyper
   @fnl     ;; fn: hold=fn layer
+  =     grv  ;; swap: ` → =, = → `  (training for new keyboard)
   brdn  brup  mctl  M-spc  dtn  dnd  prev  pp  next  mute  vold  volu
   @a  @s  @d  @f  @j  @k  @l  @sem
   ;; lmet/rmet → backspace/enter
   bspc  ret
   ;; TRAINING: remove this line and the corresponding one in defsrc to restore standard backspace/enter
   XX  XX
+  ;; TRAINING: physical modifiers disabled — use HRM
+  XX  XX  XX  XX  XX  XX
 )
 
 (deflayer fkeys
   _  _
+  _   _
   f1  f2  f3  f4  f5  f6  f7  f8  f9  f10  f11  f12
   _   _   _   _   _   _   _   _
   ;; lmet/rmet → backspace/enter
   bspc  ret
   ;; TRAINING: remove this line and the corresponding one in defsrc to restore standard backspace/enter
   XX  XX
+  ;; TRAINING: physical modifiers disabled — use HRM
+  XX  XX  XX  XX  XX  XX
 )
 
 ;; left_option + hjkl → arrow keys (other modifiers like shift pass through)

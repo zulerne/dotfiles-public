@@ -7,6 +7,10 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "inlay_hints": {
+    "show_background": false,
+    "enabled": true
+  },
   "soft_wrap": "editor_width",
   "which_key": {
     "delay_ms": 1000,
