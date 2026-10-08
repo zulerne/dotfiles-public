@@ -25,8 +25,19 @@ desc = "Go to Documents"
 
 [[mgr.prepend_keymap]]
 on = ["g", "v"]
-run = "cd /Volumes"
-desc = "Go to mounted volumes"
+run = 'shell -- [ -n "$OBSIDIAN_VAULT" ] && ya emit cd "$OBSIDIAN_VAULT"'
+desc = "Go to Obsidian vault"
+
+[[mgr.prepend_keymap]]
+on = ["g", "r"]
+run = 'shell -- ya emit cd "$(git rev-parse --show-toplevel)"'
+desc = "Go to Git repository root"
+
+[[mgr.prepend_keymap]]
+on = "!"
+for = "unix"
+run = 'shell "$SHELL" --block'
+desc = "Open shell here"
 
 [[mgr.prepend_keymap]]
 on = "l"
@@ -40,18 +51,18 @@ desc = "Enter the child directory, or open the file"
 
 [[mgr.prepend_keymap]]
 on = "q"
+run = "plugin confirm-quit"
+desc = "Quit Yazi, confirming if multiple tabs are open"
+
+[[mgr.prepend_keymap]]
+on = "Q"
 run = "noop"
-desc = "Prevent accidental quit"
+desc = "Disable quitting with Q"
 
 [[mgr.prepend_keymap]]
 on = "<C-z>"
 run = "noop"
 desc = "Prevent accidental suspension"
-
-[[mgr.prepend_keymap]]
-on = "Q"
-run = "quit"
-desc = "Quit Yazi"
 
 [[mgr.prepend_keymap]]
 on = "f"
@@ -72,3 +83,8 @@ desc = "Show or hide the preview pane"
 on = "<C-t>"
 run = "plugin toggle-pane max-preview"
 desc = "Maximize or restore the preview pane"
+
+[[input.prepend_keymap]]
+on = "<Esc>"
+run = "close"
+desc = "Cancel input"

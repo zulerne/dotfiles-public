@@ -61,6 +61,14 @@ Machine-specific secrets go in local override files (gitignored):
 - `~/.zshrc.local` — API keys, tokens, private env vars
 - `~/.gitconfig.local` — name, email, signing key
 
+For Yazi's `g v` shortcut, set your Obsidian vault path in `~/.zshrc.local`:
+
+```bash
+export OBSIDIAN_VAULT="/path/to/your/vault"
+```
+
+The shortcut does nothing when `OBSIDIAN_VAULT` is unset.
+
 ## Shell aliases
 
 Standard commands are replaced with modern alternatives:
