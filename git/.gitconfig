@@ -1,14 +1,18 @@
+[core]
+	ignorecase = false
+	autocrlf = input
+	excludesfile = ~/.gitignore_global
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 [init]
-    defaultBranch = main
-
-[pull]
-    rebase = true
-
-[push]
-    autoSetupRemote = true
-
-[rerere]
-    enabled = true
+	defaultBranch = main
+[credential]
+	helper = osxkeychain
+[url "git@github.com:"]
+	insteadOf = https://github.com/
 
 [include]
-    path = ~/.gitconfig.local
+	path = ~/.gitconfig.local

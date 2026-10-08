@@ -1,2 +1,27 @@
 [mgr]
 show_hidden = true
+# sort_by = "mtime"
+# sort_reverse = true
+# sort_dir_first = true
+linemode = "mtime"
+
+[opener]
+edit = [
+    { run = "nvim %s", desc = "Neovim", block = true, for = "unix" },
+    { run = "zed %s", desc = "Zed", orphan = true, for = "macos" },
+    { run = "open %s", desc = "macOS default app", for = "macos" },
+]
+
+[[open.prepend_rules]]
+url = "*.{html,htm,HTML,HTM}"
+use = ["open", "edit", "reveal"]
+
+[[plugin.prepend_fetchers]]
+url = "*"
+run = "git"
+group = "git"
+
+[[plugin.prepend_fetchers]]
+url = "*/"
+run = "git"
+group = "git"

@@ -6,6 +6,11 @@
 // To see the default key bindings run `zed: open default keymap`
 // from the command palette.
 [
+  {
+    "bindings": {
+      "cmd-t": "terminal_panel::Toggle",
+    },
+  },
   // {
   //   "context": "vim_mode == insert",
   //   "bindings": {
@@ -24,7 +29,8 @@
       "space w": "workspace::Save",
       "space q": "pane::CloseActiveItem",
       "space r": ["action::Sequence", ["workspace::Save", "task::Spawn"]],
-      "space g": ["task::Spawn", { "task_name": "lazygit" }],
+      // "space g": ["task::Spawn", { "task_name": "lazygit" }],
+      "space g": "git_panel::ToggleFocus",
     },
   },
   {
@@ -41,9 +47,16 @@
     },
   },
   {
+    "context": "GitPanel",
+    "bindings": {
+      "space g": "workspace::CloseActiveDock",
+      "escape": "git_panel::ToggleFocus",
+    },
+  },
+  {
     "context": "Terminal",
     "bindings": {
-      // "escape": "terminal_panel::Toggle",
+      // "escape": "terminal_panel::ToggleFocus",
       "alt-space": "terminal_panel::Toggle",
       // "escape space": "terminal_panel::Toggle",
     },

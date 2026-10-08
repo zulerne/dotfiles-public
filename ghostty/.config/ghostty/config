@@ -9,13 +9,14 @@ theme = dark:Catppuccin Mocha,light:Catppuccin Latte
 # cursor-style = bar
 
 # Window
-window-padding-x = 8
-window-padding-y = 4
-unfocused-split-opacity = 0.5
+window-padding-x = 10
+window-padding-y = 8
+unfocused-split-opacity = 0.85
 
 # macOS
 macos-option-as-alt = true
 keybind = super+q=unbind
+macos-titlebar-style = tabs
 
 # Clipboard
 clipboard-read = allow
@@ -26,4 +27,4 @@ notify-on-command-finish = unfocused
 notify-on-command-finish-action = bell,notify
 
 # Scrollback
-scrollback-limit = 1000
+scrollback-limit = 10000000

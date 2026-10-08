@@ -17,13 +17,7 @@ sed "s/^palette = .*/palette = \"catppuccin_$_CATPPUCCIN\"/" \
     "$HOME/.config/starship.toml" > "$_CACHE/starship.toml"
 export STARSHIP_CONFIG="$_CACHE/starship.toml"
 
-# Yazi: copy active theme
-cp "$HOME/.config/yazi/catppuccin-$_CATPPUCCIN.toml" "$HOME/.config/yazi/theme.toml"
-
 # --- Environment variables ---
-export BAT_THEME="auto:system"
-export BAT_THEME_DARK="Catppuccin Mocha"
-export BAT_THEME_LIGHT="Catppuccin Latte"
 export LG_CONFIG_FILE="$HOME/Library/Application Support/lazygit/config.yml,$HOME/.config/lazygit/catppuccin-$_CATPPUCCIN.yml"
 
 # --- FZF colors ---

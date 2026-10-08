@@ -9,3 +9,7 @@ Thumbs.db
 .idea/
 .vscode/
 *.iml
+
+.claude/
+.idea
+**/.claude/settings.local.json

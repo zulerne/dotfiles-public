@@ -1,4 +1,4 @@
-PACKAGES := $(filter-out manual/,$(wildcard */))
+PACKAGES := $(filter-out go60/,$(wildcard */))
 
 .PHONY: stow delete restow
 

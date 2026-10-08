@@ -30,7 +30,10 @@ fi
 
 cd "$DOTFILES"
 for pkg in */; do
-    [[ "$pkg" == "manual/" ]] && continue
+    [[ "$pkg" == "go60/" ]] && continue
     stow --restow "$pkg"
 done
+if command -v ya &> /dev/null; then
+    ya pkg install
+fi
 echo "Dotfiles linked successfully"

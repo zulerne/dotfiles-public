@@ -41,11 +41,13 @@ require("lazy").setup({
 -- OPTIONS
 -- ==============================================
 
+vim.opt.clipboard = "unnamedplus"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
 vim.opt.scrolloff = 8
-vim.opt.wrap = false
+vim.opt.wrap = true
+vim.opt.linebreak = true
 
 -- ==============================================
 -- KEYBINDINGS (mirrored from Zed)

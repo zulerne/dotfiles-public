@@ -1,9 +1,10 @@
 [
   {
     "label": "lazygit",
-    "command": "lazygit",
+    "command": "lazygit -p $ZED_WORKTREE_ROOT",
     "use_new_terminal": false,
     "allow_concurrent_runs": false,
-    "reveal": "always"
-  }
+    "reveal": "always",
+    "reveal_target": "center",
+  },
 ]

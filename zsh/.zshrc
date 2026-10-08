@@ -38,6 +38,7 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR='nvim'
 export VISUAL='nvim'
 
+
 # --- KEYBINDINGS ---
 bindkey '^ ' autosuggest-accept
 bindkey ' ' magic-space
@@ -53,10 +54,24 @@ alias cd="z"
 alias find="fd"
 alias http="xh"
 alias code="zed"
-alias fm="yazi"
 alias lg="lazygit"
 alias ldo="lazydocker"
 alias c="claude"
+
+# Yazi: keep the shell in the directory selected on exit.
+unalias fm 2>/dev/null
+function fm() {
+    local yazi_cwd_file yazi_cwd yazi_exit_code
+    yazi_cwd_file="$(mktemp -t yazi-cwd.XXXXXX)" || return
+    command yazi "$@" --cwd-file="$yazi_cwd_file"
+    yazi_exit_code=$?
+    IFS= read -r -d '' yazi_cwd < "$yazi_cwd_file"
+    if [[ -n "$yazi_cwd" && "$yazi_cwd" != "$PWD" && -d "$yazi_cwd" ]]; then
+        builtin cd -- "$yazi_cwd"
+    fi
+    command rm -f -- "$yazi_cwd_file"
+    return "$yazi_exit_code"
+}
 
 # Utils
 alias -g C='| pbcopy'
@@ -85,8 +100,15 @@ export PATH="$HOME/.local/bin:$PATH"
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 
+
 # JetBrains Toolbox
 export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
+
+# Antigravity
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+
+# Added by Obsidian
+export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
 
 # ==============================================
 # TOOL SETTINGS (UX & Behavior)
@@ -135,10 +157,8 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_SAVE_NO_DUPS
-setopt HIST_REDUCE_BLANKS
-
 # ==============================================
-# OPTIONAL TOOLS (uncomment to enable)
+# ARCHIVED / DISABLED TOOLS
 # ==============================================
 
 # Google Cloud SDK
@@ -150,16 +170,17 @@ setopt HIST_REDUCE_BLANKS
 # [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
 # [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 
-# Bun
+# Bun / Python / Rust / Pipx
 # [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 # export BUN_INSTALL="$HOME/.bun"
 # export PATH="$BUN_INSTALL/bin:$PATH"
-
-# Rust / Cargo
+# alias py='python3'
 . "$HOME/.cargo/env"
+# export PATH="$PATH:$HOME/.local/bin"
 
-# ==============================================
-# LOCAL OVERRIDES (not tracked by git)
-# ==============================================
+# AWS Bedrock (credentials belong in ~/.zshrc.local)
+export CLAUDE_CODE_USE_BEDROCK=1
+export AWS_REGION=eu-north-1
 
+# Machine-specific secrets and overrides (not tracked by git).
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local

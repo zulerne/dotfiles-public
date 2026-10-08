@@ -7,16 +7,44 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "indent_guides": {
+    "coloring": "fixed",
+  },
+  "auto_indent": "syntax_aware",
+  "cli_default_open_behavior": "new_window",
+  "minimap": {
+    "show": "never",
+  },
+  "format_on_save": "on",
+  "buffer_line_height": "comfortable",
+  "relative_line_numbers": "disabled",
+  "code_lens": "on",
+  "colorize_brackets": false,
+  "diff_view_style": "split",
+  "agent_buffer_font_size": 18.0,
+  "outline_panel": {
+    "button": false,
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "button": false,
+    "dock": "left",
+  },
+  "git_panel": {
+    "group_by": "staging",
+    "tree_view": true,
+    "dock": "left",
+  },
   "inlay_hints": {
     "show_background": false,
-    "enabled": true
+    "enabled": true,
   },
   "soft_wrap": "editor_width",
   "which_key": {
     "delay_ms": 1000,
-    "enabled": true
+    "enabled": true,
   },
-  "agent_ui_font_size": 16.0,
+  "agent_ui_font_size": 20.0,
   "always_treat_brackets_as_autoclosed": true,
   "use_auto_surround": true,
   "vim": {
@@ -26,23 +54,29 @@
   },
   "vim_mode": true,
   "audio": {
-    "experimental.input_audio_device": "coreaudio:BuiltInMicrophoneDevice"
+    "experimental.input_audio_device": "coreaudio:BuiltInMicrophoneDevice",
   },
   "autosave": "on_focus_change",
   "git": {
     "inline_blame": {
-      "enabled": false
-    }
+      "enabled": false,
+    },
   },
   "agent": {
+    "sidebar_side": "right",
+    "dock": "right",
     "default_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-5-mini",
-      "enable_thinking": false,
-      "effort": "high"
+      "provider": "amazon-bedrock",
+      "model": "claude-haiku-4-5",
+      "enable_thinking": true,
     },
+    "commit_message_model": {
+      "provider": "amazon-bedrock",
+      "model": "claude-haiku-4-5",
+    },
+    "commit_message_instructions": "Return exactly one plain-text Conventional Commit line: <type>[(<scope>)]: <description>. Allowed types: feat, fix, refactor, perf, test, docs, build, ci, chore, style, revert. Scope is optional. Description is No Markdown, code fences, body, explanation, or extra text.",
     "favorite_models": [],
-    "model_parameters": []
+    "model_parameters": [],
   },
   "scrollbar": {
     "git_diff": true,
@@ -51,19 +85,20 @@
   "project_panel": {
     "dock": "left",
   },
-  "show_edit_predictions": false,
+  "show_edit_predictions": true,
   "icon_theme": {
-    "mode": "system",
+    "mode": "light",
     "light": "Catppuccin Latte",
     "dark": "Catppuccin Mocha",
   },
   "edit_predictions": {
     "mode": "eager",
-    "provider": "mercury",
+    "provider": "zed",
   },
   "buffer_font_family": "JetBrainsMonoNL Nerd Font Mono",
   "terminal": {
-    "font_size": 16.0,
+    "shell": "system",
+    "font_size": 18.0,
     "cursor_shape": "bar",
   },
   "agent_servers": {
@@ -71,12 +106,26 @@
       "type": "registry",
     },
     "codex-acp": {
+      "default_config_options": {
+        "model": "gpt-5.6-sol"
+      },
       "type": "registry",
     },
   },
-  "base_keymap": "JetBrains",
-  "ui_font_size": 16.0,
-  "buffer_font_size": 16.0,
+  "languages": {
+    "Python": {
+      "show_edit_predictions": true,
+      // "indent_guides": {
+      //   "background_coloring": "indent_aware",
+      // },
+    },
+    "Go": {
+      "show_edit_predictions": true,
+    },
+  },
+  "base_keymap": "Zed",
+  "ui_font_size": 18.0,
+  "buffer_font_size": 18.0,
   "theme": {
     "mode": "system",
     "light": "Catppuccin Latte",
