@@ -1,3 +1,6 @@
+# Icon
+macos-icon = xray
+
 # Font
 font-family = JetBrainsMono Nerd Font Mono
 font-size = 18
@@ -11,7 +14,7 @@ theme = dark:Catppuccin Mocha,light:Catppuccin Latte
 # Window
 window-padding-x = 10
 window-padding-y = 8
-unfocused-split-opacity = 0.85
+unfocused-split-opacity = 0.80
 
 # macOS
 macos-option-as-alt = true
@@ -21,6 +24,7 @@ macos-titlebar-style = tabs
 # Clipboard
 clipboard-read = allow
 clipboard-write = allow
+## copy-on-select = true
 
 # Notifications (when window is unfocused)
 notify-on-command-finish = unfocused

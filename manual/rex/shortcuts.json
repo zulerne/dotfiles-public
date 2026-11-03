@@ -1,0 +1,46 @@
+{
+  "layer" : {
+    "bindings" : [
+      {
+        "action" : "session.new",
+        "keys" : [
+          "cmd+n"
+        ],
+        "source" : "settings"
+      },
+      {
+        "action" : "session.next",
+        "keys" : [
+          "ctrl+k"
+        ],
+        "source" : "settings"
+      },
+      {
+        "action" : "session.rename",
+        "keys" : [
+          "ctrl+r"
+        ],
+        "source" : "settings"
+      }
+    ],
+    "name" : "settings",
+    "removals" : [
+      {
+        "action" : "client.window.new",
+        "keys" : [
+          "cmd+n"
+        ]
+      },
+      {
+        "action" : "session.new",
+        "keys" : [
+          "shift+cmd+n"
+        ]
+      }
+    ]
+  },
+  "migrations" : [
+    "bracket-characters"
+  ],
+  "version" : 1
+}

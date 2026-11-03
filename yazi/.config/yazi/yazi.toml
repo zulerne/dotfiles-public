@@ -1,16 +1,23 @@
 [mgr]
-show_hidden = true
+show_hidden = false
 # sort_by = "mtime"
 # sort_reverse = true
 # sort_dir_first = true
 linemode = "mtime"
 
 [opener]
+glow = [
+    { run = 'for file in %s; do glow --pager -- "$file" || exit; done', desc = "Glow", block = true, for = "unix" },
+]
 edit = [
     { run = "nvim %s", desc = "Neovim", block = true, for = "unix" },
     { run = "zed %s", desc = "Zed", orphan = true, for = "macos" },
     { run = "open %s", desc = "macOS default app", for = "macos" },
 ]
+
+[[open.prepend_rules]]
+url = "*.{md,markdown}"
+use = ["glow", "edit", "reveal"]
 
 [[open.prepend_rules]]
 url = "*.{html,htm,HTML,HTM}"

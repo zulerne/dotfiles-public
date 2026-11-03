@@ -63,7 +63,9 @@
     },
   },
   "agent": {
-    "sidebar_side": "right",
+    "threads_sidebar": {
+      "position": "right"
+    },
     "dock": "right",
     "default_model": {
       "provider": "amazon-bedrock",
@@ -93,7 +95,7 @@
   },
   "edit_predictions": {
     "mode": "eager",
-    "provider": "zed",
+    "provider": "copilot",
   },
   "buffer_font_family": "JetBrainsMonoNL Nerd Font Mono",
   "terminal": {
@@ -120,7 +122,7 @@
       // },
     },
     "Go": {
-      "show_edit_predictions": true,
+      "show_edit_predictions": false,
     },
   },
   "base_keymap": "Zed",

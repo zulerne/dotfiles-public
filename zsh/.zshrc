@@ -1,4 +1,32 @@
 # ==============================================
+# PATHS & ENVIRONMENT
+# ==============================================
+
+# Keep the first occurrence of each path, including on repeated sourcing.
+typeset -U path PATH
+
+# Local bin
+export PATH="$HOME/.local/bin:$PATH"
+
+# Go
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
+
+# JetBrains Toolbox
+export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
+
+# Antigravity
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+
+# Added by Obsidian
+export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
+
+# Rust (optional)
+if [[ -r "$HOME/.cargo/env" ]]; then
+    source "$HOME/.cargo/env"
+fi
+
+# ==============================================
 # CATPPUCCIN (auto light/dark)
 # ==============================================
 
@@ -22,7 +50,6 @@ plugins=(
     zsh-autosuggestions
     zoxide
     fzf
-    yarn
     golang
     starship
     zsh-syntax-highlighting
@@ -49,7 +76,7 @@ bindkey ' ' magic-space
 alias cat="bat"
 alias ls="eza --icons"
 alias tree="eza --tree --icons"
-alias grep="rg"
+# alias grep="rg"
 alias cd="z"
 alias find="fd"
 alias http="xh"
@@ -86,36 +113,13 @@ alias -s go=code
 alias nano="nvim"
 alias vim="nvim"
 
-# Eza completion fix
-compdef eza=ls
-
-# ==============================================
-# PATHS & ENVIRONMENT (System Plumbing)
-# ==============================================
-
-# Local bin
-export PATH="$HOME/.local/bin:$PATH"
-
-# Go
-export GOPATH="$HOME/go"
-export PATH="$GOPATH/bin:$PATH"
-
-
-# JetBrains Toolbox
-export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
-
-# Antigravity
-export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
-
-# Added by Obsidian
-export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
-
 # ==============================================
 # TOOL SETTINGS (UX & Behavior)
 # ==============================================
 
 # --- FZF ---
-# Search Engine: Use fd (fast, ignores .git)
+# Standalone fzf: use fd (respects ignore files, excludes .git).
+# Ctrl+T and Alt+C use fzf's built-in filesystem walker.
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 
 # FZF Appearance (Catppuccin colors set by catppuccin-apply.zsh)
@@ -129,9 +133,10 @@ export FZF_DEFAULT_OPTS=" \
 --marker='+' \
 $_FZF_COLORS"
 
-# Ctrl+T: File Preview (Clean, no line numbers)
+# Ctrl+T: select files and directories, with a preview for each type.
 export FZF_CTRL_T_OPTS=" \
---preview 'bat --color=always {}' \
+--walker-skip .git,node_modules,target \
+--preview 'if [ -d {} ]; then eza --tree --level=2 --color=always --icons -- {}; else bat --style=plain --color=always --paging=never --line-range=:500 -- {}; fi' \
 --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 
 # Ctrl+R: Command History Preview
@@ -157,6 +162,12 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_SAVE_NO_DUPS
+
+# Atuin: use Ctrl+R for history search, keeping the existing Up-arrow behavior.
+if command -v atuin >/dev/null 2>&1; then
+    eval "$(atuin init zsh --disable-up-arrow)"
+fi
+
 # ==============================================
 # ARCHIVED / DISABLED TOOLS
 # ==============================================
@@ -170,12 +181,11 @@ setopt HIST_SAVE_NO_DUPS
 # [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
 # [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 
-# Bun / Python / Rust / Pipx
+# Bun / Python / Pipx
 # [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 # export BUN_INSTALL="$HOME/.bun"
 # export PATH="$BUN_INSTALL/bin:$PATH"
 # alias py='python3'
-. "$HOME/.cargo/env"
 # export PATH="$PATH:$HOME/.local/bin"
 
 # AWS Bedrock (credentials belong in ~/.zshrc.local)
@@ -183,4 +193,9 @@ export CLAUDE_CODE_USE_BEDROCK=1
 export AWS_REGION=eu-north-1
 
 # Machine-specific secrets and overrides (not tracked by git).
-[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
+
+# Direnv: load project environments after the other shell setup.
+if command -v direnv >/dev/null 2>&1; then
+    eval "$(direnv hook zsh)"
+fi

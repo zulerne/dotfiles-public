@@ -3,7 +3,7 @@ require("git"):setup {
 }
 
 require("zoxide"):setup {
-    update_db = true,
+    update_db = false,
 }
 
 -- Hide file permissions in the status bar.

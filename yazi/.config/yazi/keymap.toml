@@ -19,6 +19,11 @@ run = "cd ~/Projects"
 desc = "Go to Projects"
 
 [[mgr.prepend_keymap]]
+on = ["g", "c"]
+run = "cd ~/.dotfiles"
+desc = "Go to config"
+
+[[mgr.prepend_keymap]]
 on = ["g", "D"]
 run = "cd ~/Documents"
 desc = "Go to Documents"
@@ -58,6 +63,11 @@ desc = "Quit Yazi, confirming if multiple tabs are open"
 on = "Q"
 run = "noop"
 desc = "Disable quitting with Q"
+
+[[mgr.prepend_keymap]]
+on = "D"
+run = "noop"
+desc = "Disable permanent deletion"
 
 [[mgr.prepend_keymap]]
 on = "<C-z>"

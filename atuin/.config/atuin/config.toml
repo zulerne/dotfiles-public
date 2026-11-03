@@ -1,0 +1,15 @@
+search_mode = "fuzzy"
+filter_mode = "global"
+
+style = "compact"
+inline_height = 15
+invert = true
+show_numeric_shortcuts = false
+show_preview = true
+max_preview_height = 4
+
+# Return the selected command to the shell for review before execution.
+enter_accept = false
+exit_mode = "return-original"
+
+secrets_filter = true

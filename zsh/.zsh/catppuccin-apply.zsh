@@ -10,15 +10,38 @@ fi
 
 # --- Runtime config generation (avoids modifying git-tracked files) ---
 _CACHE="$HOME/.cache/catppuccin"
-mkdir -p "$_CACHE"
 
-# Starship: generate config with correct palette
-sed "s/^palette = .*/palette = \"catppuccin_$_CATPPUCCIN\"/" \
-    "$HOME/.config/starship.toml" > "$_CACHE/starship.toml"
-export STARSHIP_CONFIG="$_CACHE/starship.toml"
+# Starship: select a separate cache for each palette. Publish complete files
+# atomically so concurrent shells never read a partially written config.
+() {
+    local source_config="$HOME/.config/starship.toml"
+    local cached_config="$_CACHE/starship-${_CATPPUCCIN}.toml"
+    local temp_config
+
+    # Fall back to the source config if the cache cannot be generated.
+    export STARSHIP_CONFIG="$source_config"
+    [[ -r "$source_config" ]] || return
+
+    if [[ ! -s "$cached_config" || "$source_config" -nt "$cached_config" ]]; then
+        command mkdir -p -- "$_CACHE" || return
+        temp_config="$(mktemp "$_CACHE/starship-${_CATPPUCCIN}.XXXXXX")" || return
+        if ! command sed "s/^palette = .*/palette = \"catppuccin_$_CATPPUCCIN\"/" \
+            "$source_config" > "$temp_config" \
+            || ! command mv -f -- "$temp_config" "$cached_config"; then
+            command rm -f -- "$temp_config"
+            return
+        fi
+    fi
+
+    export STARSHIP_CONFIG="$cached_config"
+}
 
 # --- Environment variables ---
 export LG_CONFIG_FILE="$HOME/Library/Application Support/lazygit/config.yml,$HOME/.config/lazygit/catppuccin-$_CATPPUCCIN.yml"
+export ATUIN_THEME__NAME="catppuccin-${_CATPPUCCIN}-mauve"
+# Glow's CLI reads GLOW_STYLE; its TUI reads GLAMOUR_STYLE.
+export GLOW_STYLE="$HOME/.config/glow/styles/catppuccin-${_CATPPUCCIN}.json"
+export GLAMOUR_STYLE="$GLOW_STYLE"
 
 # --- FZF colors ---
 if [[ "$_CATPPUCCIN" == "mocha" ]]; then

@@ -6,10 +6,12 @@ macOS dotfiles managed with GNU Stow. Package directories mirror paths under `$H
 
 - `zsh/`: Oh-My-Zsh, aliases, shell functions, and Catppuccin theme switching.
 - `starship/`, `ghostty/`, `bat/`, `lazygit/`: prompt, terminal, and CLI themes.
+- `atuin/`, `btop/`, `glow/`: shell history settings and CLI themes.
 - `nvim/`, `zed/`: editor settings and keymaps; the shell's default editor is `nvim`.
 - `yazi/`: file manager settings, keymaps, plugins, and light/dark flavors.
 - `git/`: portable Git settings; personal identity belongs in `~/.gitconfig.local`.
-- `go60/`: ZMK keymap and layout export, used for keyboard firmware rather than Stow.
+- `go60/`: GO60 layout-editor JSON export for keyboard firmware, excluded from Stow.
+- `iterm/`, `brave/`, `manual/`: separately restored iTerm2 preferences, Brave policy profile and Rex settings; excluded from Stow.
 - `Brewfile`: Homebrew dependencies.
 
 ## Working Agreements

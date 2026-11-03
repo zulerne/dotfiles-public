@@ -1,0 +1,1 @@
+-- No custom key bindings to migrate from Ghostty.

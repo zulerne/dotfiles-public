@@ -12,7 +12,7 @@ My dotfiles with Catppuccin theme.
 - **Shell**: zsh + Oh-My-Zsh + Starship prompt
 - **Terminal**: Ghostty
 - **Editors**: Neovim (default) and Zed
-- **CLI**: bat, eza, fzf, ripgrep, fd, zoxide, yazi, lazygit, lazydocker
+- **CLI**: Atuin, bat, btop, eza, fzf, ripgrep, fd, Glow, zoxide, yazi, lazygit
 - **Theme**: Catppuccin (auto light/dark switching)
 - **Font**: JetBrains Mono Nerd Font
 - **Packages**: Brewfile for Homebrew
@@ -31,12 +31,15 @@ To remove symlinks: `stow -D zsh`
 
 ## Structure
 
-Package directories mirror paths from `$HOME`. `go60/` is excluded from Stow.
+Package directories mirror paths from `$HOME`. `go60/`, `iterm/`, `brave/`, and `manual/` are excluded from the Makefile and installation script's Stow operations.
 
 ```
 zsh/.zshrc                              → ~/.zshrc
 zsh/.zprofile                           → ~/.zprofile
 zsh/.zsh/catppuccin-apply.zsh           → ~/.zsh/catppuccin-apply.zsh
+atuin/.config/atuin/                    → ~/.config/atuin/
+btop/.config/btop/themes/               → ~/.config/btop/themes/
+glow/.config/glow/styles/               → ~/.config/glow/styles/
 starship/.config/starship.toml          → ~/.config/starship.toml
 ghostty/.config/ghostty/config          → ~/.config/ghostty/config
 nvim/.config/nvim/init.lua             → ~/.config/nvim/init.lua
@@ -48,7 +51,11 @@ git/.gitconfig                          → ~/.gitconfig
 git/.gitignore_global                   → ~/.gitignore_global
 ```
 
-`go60/` — ZMK keymap and layout export for keyboard firmware.
+`go60/` contains the current GO60 layout-editor JSON export for keyboard firmware.
+
+`iterm/` contains an iTerm2 preferences snapshot with personal paths removed. Import it separately through iTerm2's preferences workflow; it is not a Stow package.
+
+`manual/rex/` contains Rex appearance and shortcut snapshots with a backup-aware save/restore script. Follow [manual/README.md](manual/README.md) to restore them after quitting Rex.
 
 Yazi plugins and Catppuccin flavors are listed in `yazi/.config/yazi/package.toml`. After linking Yazi configs manually, run `ya pkg install` to install them.
 
@@ -77,10 +84,29 @@ Standard commands are replaced with modern alternatives:
 |---------|-------------|
 | `cat`   | bat         |
 | `ls`    | eza         |
-| `grep`  | ripgrep     |
 | `cd`    | zoxide      |
 | `find`  | fd          |
 | `http`  | xh          |
+
+Use `rg` directly for ripgrep. Atuin handles `Ctrl+R` history search; the Up arrow keeps its existing behavior. fzf's `Ctrl+T` selects files and directories with bat/eza previews. Direnv loads project environments when installed.
+
+## Markdown and themes
+
+The shell selects Catppuccin Latte or Mocha at startup based on macOS appearance. Atuin and Glow use the bundled themes; btop themes can be selected in btop's settings. Starship uses an atomically generated cache for each palette under `~/.cache/catppuccin/`.
+
+In Yazi, Markdown files open in Glow's pager. Press `q` to return, or `O` to choose another opener. `g c` opens `~/.dotfiles`; `D` is disabled to prevent permanent deletion.
+
+## Brave policies
+
+`brave/brave.mobileconfig` contains the private dotfiles' Brave policy profile. It is installed separately from Stow:
+
+```bash
+make brave-policies
+```
+
+Review and finish installing **Brave — Minimal** in System Settings. Quit and reopen Brave, then inspect `brave://policy`. The profile disables optional Brave services, AI, crypto features, Tor and telemetry. It applies to stable Brave for all users of the Mac.
+
+To remove it, run `make brave-policies-delete` and remove the profile in System Settings. The Make targets open the relevant UI; installation and removal require manual confirmation there.
 
 ## Notes
 

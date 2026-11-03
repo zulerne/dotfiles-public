@@ -30,7 +30,9 @@ fi
 
 cd "$DOTFILES"
 for pkg in */; do
-    [[ "$pkg" == "go60/" ]] && continue
+    case "$pkg" in
+        go60/|iterm/|brave/|manual/) continue ;;
+    esac
     stow --restow "$pkg"
 done
 if command -v ya &> /dev/null; then

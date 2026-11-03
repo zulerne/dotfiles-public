@@ -6,6 +6,12 @@ disabled = true
 [aws]
 disabled = true
 
+# [status]
+# disabled = false
+#
+# [direnv]
+# disabled = false
+
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
 flamingo = "#f2cdcd"
