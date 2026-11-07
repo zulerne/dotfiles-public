@@ -34,6 +34,7 @@ conflicts explicitly; do not overwrite or adopt user files automatically.
 - **glow/** — Catppuccin styles for Markdown rendering
 - **lazygit/** — light/dark theme overlays
 - **nvim/** — editor settings, keybindings, lazy.nvim plugins and lockfile
+- **rex/** — `.config/rex/init.lua`: Rex floating panes (scratch shell, Lazygit, Yazi) toggled by key; edit the `floats` table, then `rex config reload`. App preferences and shortcuts stay in `manual/rex/`
 - **starship/** — `.config/starship.toml`: prompt config and both Catppuccin palettes
 - **yazi/** — file manager settings, keybindings, local plugins and `package.toml`
 - **zed/** — editor settings, keybindings and tasks

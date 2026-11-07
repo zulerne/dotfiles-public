@@ -12,12 +12,6 @@ export PATH="$HOME/.local/bin:$PATH"
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 
-# JetBrains Toolbox
-export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
-
-# Antigravity
-export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
-
 # Added by Obsidian
 export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
 

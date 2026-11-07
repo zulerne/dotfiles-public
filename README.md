@@ -47,6 +47,7 @@ zed/.config/zed/                       → ~/.config/zed/
 bat/.config/bat/config                  → ~/.config/bat/config
 lazygit/.config/lazygit/                → ~/.config/lazygit/
 yazi/.config/yazi/                      → ~/.config/yazi/
+rex/.config/rex/init.lua                → ~/.config/rex/init.lua
 git/.gitconfig                          → ~/.gitconfig
 git/.gitignore_global                   → ~/.gitignore_global
 ```
@@ -54,6 +55,8 @@ git/.gitignore_global                   → ~/.gitignore_global
 `go60/` contains the current GO60 layout-editor JSON export for keyboard firmware.
 
 `iterm/` contains an iTerm2 preferences snapshot with personal paths removed. Import it separately through iTerm2's preferences workflow; it is not a Stow package.
+
+`rex/` is the Rex Lua config: Cmd+S, Cmd+G and Cmd+Y toggle floating panes with a scratch shell, Lazygit and Yazi. Run `rex config reload` after editing it.
 
 `manual/rex/` contains Rex appearance and shortcut snapshots with a backup-aware save/restore script. Follow [manual/README.md](manual/README.md) to restore them after quitting Rex.
 

@@ -21,6 +21,13 @@
           "ctrl+r"
         ],
         "source" : "settings"
+      },
+      {
+        "action" : "pane.minimize_floating",
+        "keys" : [
+          "alt+cmd+space"
+        ],
+        "source" : "settings"
       }
     ],
     "name" : "settings",
@@ -35,6 +42,12 @@
         "action" : "session.new",
         "keys" : [
           "shift+cmd+n"
+        ]
+      },
+      {
+        "action" : "pane.minimize_floating",
+        "keys" : [
+          "alt+cmd+m"
         ]
       }
     ]
