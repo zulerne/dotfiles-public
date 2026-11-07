@@ -5,12 +5,11 @@
 My dotfiles with Catppuccin theme.
 
 ![dark](screenshot-dark.png)
-![light](screenshot-light.png)
 
 ## What's inside
 
 - **Shell**: zsh + Oh-My-Zsh + Starship prompt
-- **Terminal**: Ghostty
+- **Terminal**: [Rex](https://www.superlogical.com/rex/) with floating panes for a scratch shell, Lazygit and Yazi; Ghostty config is kept as well
 - **Editors**: Neovim (default) and Zed
 - **CLI**: Atuin, bat, btop, eza, fzf, ripgrep, fd, Glow, zoxide, yazi, lazygit
 - **Theme**: Catppuccin (auto light/dark switching)
@@ -42,7 +41,7 @@ btop/.config/btop/themes/               → ~/.config/btop/themes/
 glow/.config/glow/styles/               → ~/.config/glow/styles/
 starship/.config/starship.toml          → ~/.config/starship.toml
 ghostty/.config/ghostty/config          → ~/.config/ghostty/config
-nvim/.config/nvim/init.lua             → ~/.config/nvim/init.lua
+nvim/.config/nvim/                      → ~/.config/nvim/
 zed/.config/zed/                       → ~/.config/zed/
 bat/.config/bat/config                  → ~/.config/bat/config
 lazygit/.config/lazygit/                → ~/.config/lazygit/

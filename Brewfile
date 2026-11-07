@@ -102,6 +102,8 @@ brew "stow"
 brew "tlrc"
 # Terminal multiplexer
 brew "tmux"
+# Tree-sitter CLI; nvim-treesitter uses it to build parsers
+brew "tree-sitter-cli"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
 # Your CLI home video recorder
