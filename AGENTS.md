@@ -7,8 +7,8 @@ macOS dotfiles managed with GNU Stow. Package directories mirror paths under `$H
 - `zsh/`: Oh-My-Zsh, aliases, shell functions, and Catppuccin theme switching.
 - `starship/`, `ghostty/`, `bat/`, `lazygit/`: prompt, terminal, and CLI themes.
 - `atuin/`, `btop/`, `glow/`: shell history settings and CLI themes.
-- `nvim/`, `zed/`: editor settings and keymaps; the shell's default editor is `nvim`.
-- `rex/`: Rex Lua config with toggleable floating panes (Cmd+S scratch shell, Cmd+G Lazygit, Cmd+Y Yazi).
+- `nvim/`, `zed/`: editor settings and keymaps; the Neovim config mirrors Zed's keys. The shell's default editor is `nvim`; `v` opens `nvim .`.
+- `rex/`: Rex Lua config with toggleable floating panes (Cmd+S scratch shell, Cmd+G Lazygit, Cmd+Y Yazi, Cmd+B btop).
 - `yazi/`: file manager settings, keymaps, plugins, and light/dark flavors.
 - `git/`: portable Git settings; personal identity belongs in `~/.gitconfig.local`.
 - `go60/`: GO60 layout-editor JSON export for keyboard firmware, excluded from Stow.

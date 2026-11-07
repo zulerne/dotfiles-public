@@ -55,7 +55,7 @@ git/.gitignore_global                   → ~/.gitignore_global
 
 `iterm/` contains an iTerm2 preferences snapshot with personal paths removed. Import it separately through iTerm2's preferences workflow; it is not a Stow package.
 
-`rex/` is the Rex Lua config: Cmd+S, Cmd+G and Cmd+Y toggle floating panes with a scratch shell, Lazygit and Yazi. Run `rex config reload` after editing it.
+`rex/` is the Rex Lua config: Cmd+S, Cmd+G, Cmd+Y and Cmd+B toggle floating panes with a scratch shell, Lazygit, Yazi and btop. Run `rex config reload` after editing it.
 
 `manual/rex/` contains Rex appearance and shortcut snapshots with a backup-aware save/restore script. Follow [manual/README.md](manual/README.md) to restore them after quitting Rex.
 
@@ -77,6 +77,44 @@ export OBSIDIAN_VAULT="/path/to/your/vault"
 ```
 
 The shortcut does nothing when `OBSIDIAN_VAULT` is unset.
+
+## Neovim
+
+The config mirrors the Zed setup in `zed/`, so the same keys work in both.
+Space is the leader key.
+
+| Keys | Action |
+|------|--------|
+| `Space e` | File tree: open, focus, close; `Esc` returns to the editor, `-` moves to the parent folder |
+| `Space f` / `Space b` | Find file / switch between open buffers (opens in the list: `j`/`k`, `dd` closes) |
+| `Space /`, `g/` | Search in project; `Space s…` for more pickers, `Space s.` resumes the last one |
+| `Space sr` | Search and replace in the project (grug-far); in Visual mode, for the selection |
+| `Space p` | Recent projects: switches to the project and restores its session |
+| `Space sd` / `Space sD` | Diagnostics in the project / in the file |
+| `Space w` / `Space q` / `Space Q` | Save / close buffer / quit Neovim |
+| `Space g` | Lazygit in a floating window; `e` on a file opens it here |
+| `Space t`, `Alt+Space` | Toggle terminal |
+| `Space r` / `Space R` | Save and run: the Go test under the cursor, `go run .` in a `package main` file, else the last command / edit the command first |
+| `gd` `gD` `gy` `gI` `gA` | Definition, declaration, type, implementation, references |
+| `gs` / `gS` | Symbols in file / project |
+| `cd` / `g.` / `gh` | Rename / code actions / signature and docs (again to scroll it) |
+| `]m` `[m` / `grx` | Next/previous function / run the code lens under the cursor |
+| `]/` `[/` | Next/previous comment |
+| `[-` `]-` / `[+` `]+` / `[=` `]=` | Previous/next line with less / more / the same indent |
+| `]c` `[c` `do` `dO` `dp` | Next/previous change, expand hunk, stage, restore |
+| `Tab` | Accept completion or Copilot suggestion |
+| `ys` `cs` `ds` | Add / change / delete surrounding characters |
+| `gl` `gL` / `g>` `g<` / `ga` | Multi-cursor, as in Zed: add a cursor at the next/previous match / skip and add / all matches; `Esc` clears |
+| `F4`/`F5`, `F9`, `F10`, `F11`, `Shift+F11`, `Shift+F5` | Debugger, as in Zed: start/continue, breakpoint, step over, step into, step out, stop |
+| `Space dt` / `Space db` / `Space dd` | Debug the Go test under the cursor / breakpoint / start or continue; more under `Space d` |
+
+Opening Neovim on a directory (`v`, `nvim`, `nvim .`) restores that project's
+open files for the current git branch, like Zed; `Space sS` lists sessions.
+Files save when you leave a buffer or the terminal loses focus, and format on
+save: goimports for Go, Ruff for Python, StyLua for Lua. Run `:Copilot auth`
+once to sign in to GitHub Copilot. `:Mason` shows installed tools and
+`:checkhealth` reports problems. JSON, YAML and Bash language servers run on
+Node.js; yaml-language-server needs a newer Node.js than 18.
 
 ## Shell aliases
 

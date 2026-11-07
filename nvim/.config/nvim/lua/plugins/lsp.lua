@@ -67,7 +67,7 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     dependencies = { "mason-org/mason.nvim" },
     event = "VeryLazy",
-    opts = { ensure_installed = tools },
+    opts = { ensure_installed = tools, debounce_hours = 24 }, -- check at most daily
   },
   {
     "neovim/nvim-lspconfig",
@@ -81,6 +81,7 @@ return {
         settings = {
           gopls = {
             staticcheck = true,
+            symbolScope = "workspace", -- gS: this project only, not the standard library or dependencies
             hints = {
               assignVariableTypes = true,
               compositeLiteralFields = true,

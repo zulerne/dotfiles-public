@@ -33,8 +33,8 @@ conflicts explicitly; do not overwrite or adopt user files automatically.
 - **git/** — `.gitconfig` and `.gitignore_global`
 - **glow/** — Catppuccin styles for Markdown rendering
 - **lazygit/** — light/dark theme overlays
-- **nvim/** — editor settings, keybindings, lazy.nvim plugins and lockfile
-- **rex/** — `.config/rex/init.lua`: Rex floating panes (scratch shell, Lazygit, Yazi) toggled by key; edit the `floats` table, then `rex config reload`. App preferences and shortcuts stay in `manual/rex/`
+- **nvim/** — lazy.nvim config mirroring Zed keys (`lua/config/`, `lua/plugins/`); servers and formatters via Mason, gopls from the Brewfile, parsers via nvim-treesitter `main` (needs `tree-sitter-cli`)
+- **rex/** — `.config/rex/init.lua`: Rex floating panes (scratch shell, Lazygit, Yazi, btop) toggled by key; edit the `floats` table, then `rex config reload`. App preferences and shortcuts stay in `manual/rex/`
 - **starship/** — `.config/starship.toml`: prompt config and both Catppuccin palettes
 - **yazi/** — file manager settings, keybindings, local plugins and `package.toml`
 - **zed/** — editor settings, keybindings and tasks
@@ -49,7 +49,7 @@ conflicts explicitly; do not overwrite or adopt user files automatically.
 
 - Shell aliases: `cat`→`bat`, `ls`→`eza --icons`, `cd`→`z`, `find`→`fd`, `http`→`xh`, `code`→`zed`
 - `grep` is not aliased; `rg` is available separately
-- Default editor (`EDITOR` and `VISUAL`) is `nvim`; `vim` and `nano` are aliases for it
+- Default editor (`EDITOR` and `VISUAL`) is `nvim`; `vim` and `nano` are aliases for it; `v` opens `nvim .`
 - `fm` launches Yazi and keeps the shell in the directory selected on exit
 - Atuin handles `Ctrl+R`; the Up arrow retains its existing behavior
 - fzf `Ctrl+T` selects files and directories, with previews through bat/eza; `Alt+C` changes directory

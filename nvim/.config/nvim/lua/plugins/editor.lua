@@ -11,6 +11,10 @@ return {
         { "<leader>c", group = "code" },
         { "<leader>u", group = "toggle" },
         { "<leader>d", group = "debug" },
+        -- which-key lists gn / gN only in Normal mode; show them after an
+        -- operator too (cgn, dgn) and in Visual mode.
+        { "gn", desc = "Next search match", mode = { "o", "x" } },
+        { "gN", desc = "Previous search match", mode = { "o", "x" } },
       },
     },
   },
@@ -30,6 +34,26 @@ return {
         },
       })
     end,
+  },
+
+  -- Search and replace across the project, like Zed's project search with replace.
+  {
+    "MagicDuck/grug-far.nvim",
+    cmd = "GrugFar",
+    opts = { transient = true },
+    keys = {
+      {
+        "<leader>sr",
+        function() require("grug-far").open({ prefills = { search = vim.fn.expand("<cword>") } }) end,
+        desc = "Search and replace in project",
+      },
+      {
+        "<leader>sr",
+        function() require("grug-far").with_visual_selection() end,
+        mode = "x",
+        desc = "Search and replace selection",
+      },
+    },
   },
 
   -- Zed: always_treat_brackets_as_autoclosed.

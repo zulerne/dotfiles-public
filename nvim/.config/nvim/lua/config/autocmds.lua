@@ -17,6 +17,23 @@ autocmd({ "FocusLost", "BufLeave" }, {
   end,
 })
 
+-- Code is typed in English: switch macOS to the ABC layout when entering or
+-- leaving Insert mode, and when Neovim regains focus in Normal mode. Uses
+-- macism (Brewfile); does nothing where it isn't installed.
+if vim.fn.executable("macism") == 1 then
+  local function english()
+    vim.system({ "macism", "com.apple.keylayout.ABC" })
+  end
+  autocmd({ "InsertEnter", "InsertLeave" }, { callback = english })
+  autocmd("FocusGained", {
+    callback = function()
+      if vim.api.nvim_get_mode().mode == "n" then
+        english()
+      end
+    end,
+  })
+end
+
 -- Reload files changed outside Neovim, e.g. by lazygit or Claude Code.
 autocmd({ "FocusGained", "BufEnter", "TermClose", "TermLeave" }, {
   callback = function()

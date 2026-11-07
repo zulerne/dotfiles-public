@@ -1,5 +1,6 @@
 tap "anomalyco/tap"
 tap "homebrew/services"
+tap "laishulu/homebrew"
 tap "redis/redis"
 tap "zulerne/tap"
 # Improved shell history for zsh, bash, fish and nushell
@@ -66,8 +67,8 @@ brew "libpq"
 brew "mockery"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
-# Manage multiple Node.js versions
-brew "nvm"
+# Open-source, cross-platform JavaScript runtime environment
+brew "node"
 # Open source suite of directory software
 brew "openldap"
 # Cryptography and SSL/TLS Toolkit
@@ -118,6 +119,8 @@ brew "yazi"
 brew "zoxide"
 # Fast CLI to analyze Claude Code token usage and costs
 brew "zulerne/tap/ccost", trusted: true
+# Switch the macOS input source from the command line (ABC in new shells and Neovim)
+brew "laishulu/homebrew/macism", trusted: true
 # Command-line tools for building and debugging Android apps
 cask "android-commandlinetools"
 # Android SDK component

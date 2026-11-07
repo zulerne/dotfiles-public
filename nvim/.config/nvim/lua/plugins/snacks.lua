@@ -41,8 +41,12 @@ return {
           -- Open in the list (normal mode): j/k to move, Enter to open,
           -- dd to close a buffer, / or i to type a filter.
           buffers = { focus = "list" },
+          -- Space f: recent files and buffers from this project only, like Zed.
+          smart = { filter = { cwd = true } },
           -- vim.ui.select: delete confirmation in the tree, code actions (g.).
           select = { focus = "list" },
+          -- Space p: git repositories under ~/Projects plus projects of recent files.
+          projects = { dev = { "~/Projects" } },
           diagnostics = { focus = "list" },
           diagnostics_buffer = { focus = "list" },
           explorer = {
@@ -90,7 +94,8 @@ return {
       { "<leader>/", function() Snacks.picker.grep() end, desc = "Search in project" },
       { "g/", function() Snacks.picker.grep() end, desc = "Search in project" }, -- Zed: g /
       { "<leader>sw", function() Snacks.picker.grep_word() end, mode = { "n", "x" }, desc = "Search word" },
-      { "<leader>sr", function() Snacks.picker.resume() end, desc = "Resume last search" },
+      { "<leader>s.", function() Snacks.picker.resume() end, desc = "Resume last search" },
+      { "<leader>p", function() Snacks.picker.projects() end, desc = "Recent projects" },
       { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics (project)" },
       { "<leader>sD", function() Snacks.picker.diagnostics_buffer() end, desc = "Diagnostics (file)" },
       { "<leader>sh", function() Snacks.picker.help() end, desc = "Help" },

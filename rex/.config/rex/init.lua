@@ -12,6 +12,7 @@ local floats = {
 	{ key = "cmd+s", name = "scratch_float", title = "Scratch Terminal", keywords = "scratch terminal shell" },
 	{ key = "cmd+g", name = "lazygit_float", title = "Lazygit", command = { "lazygit" }, keywords = "git" },
 	{ key = "cmd+y", name = "yazi_float", title = "Yazi", command = { "yazi" }, keywords = "files manager" },
+	{ key = "cmd+b", name = "btop_float", title = "btop", command = { "btop" }, keywords = "system monitor processes cpu memory" },
 }
 
 local terminal = "com.superlogical.terminal"
@@ -72,12 +73,24 @@ local function find_float(window, label)
 	end
 end
 
+-- Switch macOS to the ABC (English) layout, as new shells do in .zshrc. Floats
+-- like lazygit run without a shell, so do it here. The Rex server's PATH may
+-- lack Homebrew; macism missing is not an error.
+local function english_layout()
+	for _, macism in ipairs({ "macism", "/opt/homebrew/bin/macism" }) do
+		if rex.exec({ macism, "com.apple.keylayout.ABC" }) then
+			return
+		end
+	end
+end
+
 local function toggle_float(spec, ctx)
 	local label = "float:" .. spec.name
 	local window = current_window(check(rex.session.view({})), ctx.block_id)
 	local layer = window and find_float(window, label)
 
 	if not layer then
+		english_layout()
 		check(rex.session.new_layer({
 			window_id = window and window.window_id,
 			bounds = spec.bounds or default_bounds,
@@ -92,6 +105,7 @@ local function toggle_float(spec, ctx)
 		check(rex.session.set_layer_state({ layer_id = layer.layer_id, state = "minimized" }))
 	else
 		-- Minimized, or visible behind another pane: bring it forward.
+		english_layout()
 		check(rex.session.set_layer_state({ layer_id = layer.layer_id, state = "normal", focus = true }))
 	end
 end

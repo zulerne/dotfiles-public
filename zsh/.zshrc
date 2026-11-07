@@ -17,7 +17,7 @@ export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
 
 # Rust (optional)
 if [[ -r "$HOME/.cargo/env" ]]; then
-    source "$HOME/.cargo/env"
+  source "$HOME/.cargo/env"
 fi
 
 # ==============================================
@@ -34,19 +34,18 @@ source "$HOME/.zsh/catppuccin-apply.zsh"
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-
 # Plugins (Syntax Highlighting must be last)
 plugins=(
-    git
-    docker
-    docker-compose
-    macos
-    zsh-autosuggestions
-    zoxide
-    fzf
-    golang
-    starship
-    zsh-syntax-highlighting
+  git
+  docker
+  docker-compose
+  macos
+  zsh-autosuggestions
+  zoxide
+  fzf
+  golang
+  starship
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -58,7 +57,6 @@ source $ZSH/oh-my-zsh.sh
 # Editor
 export EDITOR='nvim'
 export VISUAL='nvim'
-
 
 # --- KEYBINDINGS ---
 bindkey '^ ' autosuggest-accept
@@ -82,16 +80,16 @@ alias c="claude"
 # Yazi: keep the shell in the directory selected on exit.
 unalias fm 2>/dev/null
 function fm() {
-    local yazi_cwd_file yazi_cwd yazi_exit_code
-    yazi_cwd_file="$(mktemp -t yazi-cwd.XXXXXX)" || return
-    command yazi "$@" --cwd-file="$yazi_cwd_file"
-    yazi_exit_code=$?
-    IFS= read -r -d '' yazi_cwd < "$yazi_cwd_file"
-    if [[ -n "$yazi_cwd" && "$yazi_cwd" != "$PWD" && -d "$yazi_cwd" ]]; then
-        builtin cd -- "$yazi_cwd"
-    fi
-    command rm -f -- "$yazi_cwd_file"
-    return "$yazi_exit_code"
+  local yazi_cwd_file yazi_cwd yazi_exit_code
+  yazi_cwd_file="$(mktemp -t yazi-cwd.XXXXXX)" || return
+  command yazi "$@" --cwd-file="$yazi_cwd_file"
+  yazi_exit_code=$?
+  IFS= read -r -d '' yazi_cwd <"$yazi_cwd_file"
+  if [[ -n "$yazi_cwd" && "$yazi_cwd" != "$PWD" && -d "$yazi_cwd" ]]; then
+    builtin cd -- "$yazi_cwd"
+  fi
+  command rm -f -- "$yazi_cwd_file"
+  return "$yazi_exit_code"
 }
 
 # Utils
@@ -106,6 +104,7 @@ alias -s go=code
 # Editor replacements
 alias nano="nvim"
 alias vim="nvim"
+alias v="nvim ."  # open Neovim in the current directory, with the file tree
 
 # ==============================================
 # TOOL SETTINGS (UX & Behavior)
@@ -159,7 +158,12 @@ setopt HIST_SAVE_NO_DUPS
 
 # Atuin: use Ctrl+R for history search, keeping the existing Up-arrow behavior.
 if command -v atuin >/dev/null 2>&1; then
-    eval "$(atuin init zsh --disable-up-arrow)"
+  eval "$(atuin init zsh --disable-up-arrow)"
+fi
+
+# Start new shells in the ABC (English) layout; in the background so startup isn't delayed.
+if command -v macism >/dev/null 2>&1; then
+  macism com.apple.keylayout.ABC &!
 fi
 
 # ==============================================
@@ -170,11 +174,6 @@ fi
 # if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
 # if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 
-# NVM
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
-# [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
-
 # Bun / Python / Pipx
 # [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 # export BUN_INSTALL="$HOME/.bun"
@@ -182,14 +181,13 @@ fi
 # alias py='python3'
 # export PATH="$PATH:$HOME/.local/bin"
 
-# AWS Bedrock (credentials belong in ~/.zshrc.local)
-export CLAUDE_CODE_USE_BEDROCK=1
-export AWS_REGION=eu-north-1
+# Claude Code through AWS Bedrock (subscription by default; credentials belong in ~/.zshrc.local)
+alias claude-bedrock='CLAUDE_CODE_USE_BEDROCK=1 AWS_REGION=us-east-1 AWS_PROFILE=default claude'
 
 # Machine-specific secrets and overrides (not tracked by git).
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 
 # Direnv: load project environments after the other shell setup.
 if command -v direnv >/dev/null 2>&1; then
-    eval "$(direnv hook zsh)"
+  eval "$(direnv hook zsh)"
 fi
