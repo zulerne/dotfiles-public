@@ -56,6 +56,35 @@ return {
     },
   },
 
+  -- Jump anywhere on screen: s + 1-2 letters + the shown label. Replaces s
+  -- (substitute character; cl does the same). S in Visual mode stays with
+  -- nvim-surround.
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {},
+    keys = {
+      { "s", function() require("flash").jump() end, mode = { "n", "x", "o" }, desc = "Flash jump" },
+      { "S", function() require("flash").treesitter() end, mode = { "n", "o" }, desc = "Flash select syntax node" },
+      { "r", function() require("flash").remote() end, mode = "o", desc = "Remote flash" },
+      { "R", function() require("flash").treesitter_search() end, mode = { "o", "x" }, desc = "Flash syntax search" },
+      { "<C-s>", function() require("flash").toggle() end, mode = "c", desc = "Toggle flash in / search" },
+    },
+  },
+
+  -- Highlight TODO, FIXME, HACK, NOTE, … in comments; jump and search them.
+  {
+    "folke/todo-comments.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {},
+    keys = {
+      { "]t", function() require("todo-comments").jump_next() end, desc = "Next TODO comment" },
+      { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous TODO comment" },
+      { "<leader>st", function() Snacks.picker.todo_comments() end, desc = "TODO comments" },
+    },
+  },
+
   -- Zed: always_treat_brackets_as_autoclosed.
   { "nvim-mini/mini.pairs", event = "InsertEnter", opts = {} },
 

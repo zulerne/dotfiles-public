@@ -80,7 +80,7 @@ return {
       vim.lsp.config("gopls", {
         settings = {
           gopls = {
-            staticcheck = true,
+            staticcheck = false, -- runs through golangci-lint on save (lua/plugins/lint.lua)
             symbolScope = "workspace", -- gS: this project only, not the standard library or dependencies
             hints = {
               assignVariableTypes = true,

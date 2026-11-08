@@ -100,6 +100,8 @@ Space is the leader key.
 | `cd` / `g.` / `gh` | Rename / code actions / signature and docs (again to scroll it) |
 | `]m` `[m` / `grx` | Next/previous function / run the code lens under the cursor |
 | `]/` `[/` | Next/previous comment |
+| `]t` `[t` / `Space st` | Next/previous TODO, FIXME, HACK… comment / search them in the project |
+| `s` / `S` | Flash: jump anywhere on screen (type 1–2 letters, then the label) / select a syntax node |
 | `[-` `]-` / `[+` `]+` / `[=` `]=` | Previous/next line with less / more / the same indent |
 | `]c` `[c` `do` `dO` `dp` | Next/previous change, expand hunk, stage, restore |
 | `Tab` | Accept completion or Copilot suggestion |
@@ -111,7 +113,9 @@ Space is the leader key.
 Opening Neovim on a directory (`v`, `nvim`, `nvim .`) restores that project's
 open files for the current git branch, like Zed; `Space sS` lists sessions.
 Files save when you leave a buffer or the terminal loses focus, and format on
-save: goimports for Go, Ruff for Python, StyLua for Lua. Run `:Copilot auth`
+save: goimports for Go, Ruff for Python, StyLua for Lua. Go files are also
+checked by golangci-lint on open and save, using the project's `.golangci.yml`
+or its default linters. Run `:Copilot auth`
 once to sign in to GitHub Copilot. `:Mason` shows installed tools and
 `:checkhealth` reports problems. JSON, YAML and Bash language servers run on
 Node.js; yaml-language-server needs a newer Node.js than 18.
